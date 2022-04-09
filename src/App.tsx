@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createContext, FC } from "react";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppContextInterface {
+  mobile: boolean;
 }
+
+export const AppContext = createContext<AppContextInterface | null>(null);
+
+const AppContent: AppContextInterface = {
+  mobile: false,
+};
+
+const App: FC = () => {
+  return (
+    <AppContext.Provider value={AppContent}>
+      <div className="App">
+        <Navbar />
+        <div className="flex h-[90vh]">
+          <Sidebar />
+          <main className="main flex-grow ml-[200px] bg-white"></main>
+        </div>
+      </div>
+    </AppContext.Provider>
+  );
+};
 
 export default App;
