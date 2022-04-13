@@ -4,9 +4,9 @@ export interface GCInterface {
   name: string;
 }
 
-export const GeneralContext = createContext<GCInterface | null>(null);
+export const GeneralContext = createContext({});
 
 export const GeneralProvider = () => {
-  const [mobile, setMobile] = useState<boolean>(false);
-  return <GeneralContext.Provider value={mobile}></GeneralContext.Provider>;
+  // const [mobile, setMobile] = useState<boolean>(false);
+  return <GeneralContext.Provider value={{}}></GeneralContext.Provider>;
 };
