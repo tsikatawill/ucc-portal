@@ -1,16 +1,19 @@
 import Logo from "../images/ucc-logo.gif";
 import { FaBars, FaCaretDown, FaUserGraduate } from "react-icons/fa";
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { SidebarContext } from "./context/SidebarContext";
 
 const Navbar: FC = () => {
+  const { setShowSidebar, showSidebar } = useContext(SidebarContext);
   const [showLogout, setShowLogout] = useState<boolean>(false);
   return (
     <nav className="navbar h-[10vh] fixed top-0 w-full bg-slate-800 text-white z-50">
       <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
-        <div className="logo flex items-center gap-2 cursor-pointer">
+        <Link to="/" className="logo flex items-center gap-2">
           <img src={Logo} alt="logo" width={"40px"} />
           <span className=" font-bold text-xl">Students' Portal</span>
-        </div>
+        </Link>
         <div className="flex items-center gap-5">
           <div className="student-details flex items-center gap-2">
             <div className="profile-picture h-10 w-10 rounded-full bg-white grid place-content-center">
@@ -42,7 +45,10 @@ const Navbar: FC = () => {
               </div>
             )}
           </div>
-          <div className="sidebar-toggle inline-flex md:hidden p-1 border-2 hover:bg-slate-100 rounded-md hover:text-black cursor-pointer">
+          <div
+            className="sidebar-toggle inline-flex md:hidden p-1 border-2 hover:bg-slate-100 rounded-md hover:text-black cursor-pointer"
+            onClick={() => setShowSidebar(!showSidebar)}
+          >
             <FaBars size={30} />
           </div>
         </div>

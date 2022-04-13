@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-200;
+  /* @apply bg-slate-200; */
 }
+
 * {
   transition: all 0.2s ease;
+  scroll-behavior: smooth;
 }
+
 body::before {
   content: "";
   height: 10vh;
@@ -15,10 +18,14 @@ body::before {
 }
 
 aside.sidebar.mobile {
-  top: -80vh;
-  @apply z-10;
+  @apply z-10 -left-[500px] w-96;
 }
-aside.sidebar li {
+
+aside.sidebar.mobile.sidebar-open {
+  @apply left-0 top-[10vh];
+}
+
+aside.sidebar .sidebar-links a {
   @apply py-2 hover:pl-3 hover:bg-white rounded-md cursor-pointer;
 }
 
