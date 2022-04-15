@@ -1,6 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import GlassX, { PersistedState } from "glassx";
+import { logout } from "./components/auth/firebase/firebase";
 
 const App: FC = ({ children }) => {
   return (

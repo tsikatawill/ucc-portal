@@ -1,5 +1,7 @@
+import App from "../App";
+
 const PersonalDetails = () => {
-  return <div>PersonalDetails</div>;
+  return <App>PersonalDetails</App>;
 };
 
 export default PersonalDetails;

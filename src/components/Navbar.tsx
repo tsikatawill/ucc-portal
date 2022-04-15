@@ -2,15 +2,14 @@ import Logo from "../images/ucc-logo.gif";
 import { FaBars, FaCaretDown } from "react-icons/fa";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "./auth/firebase/firebase";
-import GlassX, { useStore } from "glassx";
+import { useStore, useReducer } from "glassx";
 
 const Navbar: FC = () => {
   const [showLogout, setShowLogout] = useState<boolean>(false);
-  // const [loggedInUser, setLoggedInUser] = useStore("loggedInUser");
-  const loggedInUser = GlassX.get("loggedInUser");
+  const [loggedInUser, setLoggedInUser] = useStore("loggedInUser");
   const [showSidebar, setShowSidebar] = useStore("showSidebar");
-  console.log(loggedInUser);
+  const handleLogout = useReducer("SET_LOGOUT");
+
   return (
     <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
       <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
@@ -45,9 +44,8 @@ const Navbar: FC = () => {
                     <p
                       className="py-1 px-2"
                       onClick={() => {
-                        setShowLogout(false);
-                        logout();
-                        // setLoggedInUser(null);
+                        setShowLogout(!showLogout);
+                        handleLogout({});
                       }}
                     >
                       Logout

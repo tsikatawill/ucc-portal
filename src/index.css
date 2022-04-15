@@ -25,7 +25,8 @@ aside.sidebar.mobile.sidebar-open {
   @apply left-0;
 }
 
-aside.sidebar .sidebar-links a {
+aside.sidebar .sidebar-links a,
+aside.sidebar .sidebar-links div {
   @apply py-2 hover:pl-3 hover:bg-white rounded-md cursor-pointer;
 }
 

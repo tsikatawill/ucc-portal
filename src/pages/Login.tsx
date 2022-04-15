@@ -14,9 +14,9 @@ const Login = () => {
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
         if (result.user) {
-          GlassX.set({ loggedInUser: result.user });
+          GlassX.set({ loggedInUser: result.user, hasAuth: true });
         } else {
-          GlassX.set({ loggedInUser: {} });
+          GlassX.set({ loggedInUser: {}, hasAuth: true });
         }
         setRedirect(true);
       })
