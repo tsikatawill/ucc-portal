@@ -12,7 +12,7 @@ const Sidebar: FC = () => {
         showSidebar && "sidebar-open"
       }
         
-      w-[250px] px-5 pt-5 h-screen fixed  text-xs`}
+      w-[250px] px-5 pt-5 h-screen fixed text-xs`}
     >
       <div className="student-details flex items-center gap-2 bg-white rounded-md p-2 mb-5">
         <div className="profile-picture h-10 w-10 rounded-full bg-white grid place-content-center overflow-hidden">

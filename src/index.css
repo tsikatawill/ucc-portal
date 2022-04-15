@@ -10,19 +10,19 @@ body {
   transition: all 0.2s ease;
   scroll-behavior: smooth;
 }
-
+/* 
 body::before {
   content: "";
   height: 10vh;
   display: block;
-}
+} */
 
 aside.sidebar.mobile {
   @apply z-10 -left-[500px] w-96;
 }
 
 aside.sidebar.mobile.sidebar-open {
-  @apply left-0 top-[10vh];
+  @apply left-0;
 }
 
 aside.sidebar .sidebar-links a {

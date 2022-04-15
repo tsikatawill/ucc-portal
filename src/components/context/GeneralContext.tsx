@@ -1,22 +1,14 @@
-import { createContext, Dispatch, FC, SetStateAction, useState } from "react";
+import { createContext, FC, useState } from "react";
 
-export interface GeneralContextInterface {
-  showOutlet: boolean;
-  setShowOutlet: Dispatch<SetStateAction<boolean>>;
-}
+const props = {};
 
-interface props {
-  children: JSX.Element | JSX.Element[];
-}
+export const GeneralContext = createContext<any>({});
 
-export const GeneralContext = createContext<GeneralContextInterface>(
-  {} as GeneralContextInterface
-);
+export const GeneralProvider: FC = ({ children }) => {
+  const [loggedInUser, setLoggedInUser] = useState({});
 
-export const GeneralProvider: FC<props> = ({ children }) => {
-  const [showOutlet, setShowOutlet] = useState<boolean>(false);
   return (
-    <GeneralContext.Provider value={{ showOutlet, setShowOutlet }}>
+    <GeneralContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       {children}
     </GeneralContext.Provider>
   );

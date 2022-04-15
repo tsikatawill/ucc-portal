@@ -1,7 +1,7 @@
-import React from "react";
+import App from "../App";
 
 const VerifyDetails = () => {
-  return <div>VerifyDetails</div>;
+  return <App>VerifyDetails</App>;
 };
 
 export default VerifyDetails;

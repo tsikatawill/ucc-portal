@@ -1,50 +1,64 @@
 import Logo from "../images/ucc-logo.gif";
-import { FaBars, FaCaretDown, FaUserGraduate } from "react-icons/fa";
+import { FaBars, FaCaretDown } from "react-icons/fa";
 import { FC, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { SidebarContext } from "./context/SidebarContext";
+import { GeneralContext } from "./context/GeneralContext";
+import { logout } from "./auth/firebase/firebase";
 
 const Navbar: FC = () => {
   const { setShowSidebar, showSidebar } = useContext(SidebarContext);
   const [showLogout, setShowLogout] = useState<boolean>(false);
+  const { loggedInUser } = useContext(GeneralContext);
+
   return (
-    <nav className="navbar h-[10vh] fixed top-0 w-full bg-slate-800 text-white z-50">
+    <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
       <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
         <Link to="/" className="logo flex items-center gap-2">
           <img src={Logo} alt="logo" width={"40px"} />
           <span className=" font-bold text-xl">Students' Portal</span>
         </Link>
         <div className="flex items-center gap-5">
-          <div className="student-details flex items-center gap-2">
-            <div className="profile-picture h-10 w-10 rounded-full bg-white grid place-content-center">
-              <FaUserGraduate color="gray" size={25} />
-            </div>
-            <p className="student-name font-semibold text-lg">John Doe</p>
-          </div>
-          <div className="drop-down-menu">
-            <div
-              className="toggler"
-              onClick={() => {
-                setShowLogout(!showLogout);
-              }}
-            >
-              <span className="font-extrabold">
-                <FaCaretDown size={30} />
-              </span>
-            </div>
-            {showLogout && (
-              <div className="menu absolute hover:bg-slate-200 cursor-pointer rounded-md z-10 top-[70%] right-2 p-2 bg-white text-black">
-                <p
-                  className="py-1 px-2"
+          {loggedInUser ? (
+            <div className="flex items-center gap-2">
+              <div className="student-details flex items-center gap-2">
+                <div className="profile-picture h-10 w-10 rounded-full bg-white grid place-content-center">
+                  {/* <img src={loggedInUser} alt="" /> */}
+                </div>
+                <p className="student-name font-semibold text-lg">John Doe</p>
+              </div>
+              <div className="drop-down-menu relative">
+                <div
+                  className="toggler"
                   onClick={() => {
-                    setShowLogout(false);
+                    setShowLogout(!showLogout);
                   }}
                 >
-                  Logout
-                </p>
+                  <span className="font-extrabold">
+                    <FaCaretDown size={30} />
+                  </span>
+                </div>
+                {showLogout && (
+                  <div className="menu absolute top-[100%] hover:bg-slate-200 cursor-pointer rounded-md z-10 right-2 p-2 bg-white text-black">
+                    <p
+                      className="py-1 px-2"
+                      onClick={() => {
+                        setShowLogout(false);
+                        logout();
+                      }}
+                    >
+                      Logout
+                    </p>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <Link to="/login" className="login">
+              Login
+            </Link>
+          )}
+
           <div
             className="sidebar-toggle inline-flex md:hidden p-1 border-2 hover:bg-slate-100 rounded-md hover:text-black cursor-pointer"
             onClick={() => setShowSidebar(!showSidebar)}
