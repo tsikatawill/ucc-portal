@@ -1,10 +1,11 @@
+import GlassX from "glassx";
 import { FC, useContext } from "react";
 import { FaUserGraduate } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { SidebarContext } from "./context/SidebarContext";
 
 const Sidebar: FC = () => {
-  const { mobile, showSidebar } = useContext(SidebarContext);
+  const showSidebar = GlassX.get("showSidebar");
+  const mobile = GlassX.get("mobile");
 
   return (
     <aside

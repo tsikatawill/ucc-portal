@@ -2,13 +2,10 @@ import { useContext, useState } from "react";
 import { firebaseAuth } from "../components/auth/firebase/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Navigate } from "react-router-dom";
-import { GeneralContext } from "../components/context/GeneralContext";
+import GlassX from "glassx";
 
 const Login = () => {
   const [redirect, setRedirect] = useState(false);
-  const { setLoggedInUser } = useContext(GeneralContext);
-
-  console.log(setLoggedInUser);
 
   const signIn = () => {
     const google_provider = new GoogleAuthProvider();
@@ -17,9 +14,9 @@ const Login = () => {
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
         if (result.user) {
-          setLoggedInUser(result.user);
+          GlassX.set({ loggedInUser: result.user });
         } else {
-          setLoggedInUser({});
+          GlassX.set({ loggedInUser: {} });
         }
         setRedirect(true);
       })

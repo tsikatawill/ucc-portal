@@ -1,16 +1,14 @@
 import Logo from "../images/ucc-logo.gif";
 import { FaBars, FaCaretDown } from "react-icons/fa";
-import { FC, useContext, useState } from "react";
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { SidebarContext } from "./context/SidebarContext";
-import { GeneralContext } from "./context/GeneralContext";
 import { logout } from "./auth/firebase/firebase";
+import GlassX, { useStore } from "glassx";
 
 const Navbar: FC = () => {
-  const { setShowSidebar, showSidebar } = useContext(SidebarContext);
   const [showLogout, setShowLogout] = useState<boolean>(false);
-  const { loggedInUser } = useContext(GeneralContext);
-
+  const loggedInUser = GlassX.get("loggedInUser");
+  const [showSidebar, setShowSidebar] = useStore("showSidebar");
   return (
     <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
       <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
