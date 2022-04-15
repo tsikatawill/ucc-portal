@@ -7,6 +7,12 @@ import Error404 from "./pages/Error404";
 import PersonalDetails from "./components/PersonalDetails";
 import VerifyDetails from "./components/VerifyDetails";
 import Login from "./pages/Login";
+import GlassX, { PersistedState } from "glassx";
+
+GlassX.store({
+  state: { loggedInUser: null },
+  plugins: [new PersistedState()],
+});
 
 ReactDOM.render(
   <BrowserRouter>

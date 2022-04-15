@@ -7,8 +7,10 @@ import GlassX, { useStore } from "glassx";
 
 const Navbar: FC = () => {
   const [showLogout, setShowLogout] = useState<boolean>(false);
+  // const [loggedInUser, setLoggedInUser] = useStore("loggedInUser");
   const loggedInUser = GlassX.get("loggedInUser");
   const [showSidebar, setShowSidebar] = useStore("showSidebar");
+  console.log(loggedInUser);
   return (
     <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
       <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
@@ -20,10 +22,12 @@ const Navbar: FC = () => {
           {loggedInUser ? (
             <div className="flex items-center gap-2">
               <div className="student-details flex items-center gap-2">
-                <div className="profile-picture h-10 w-10 rounded-full bg-white grid place-content-center">
-                  {/* <img src={loggedInUser} alt="" /> */}
+                <div className="profile-picture h-10 w-10 rounded-full overflow-hidden bg-white grid place-content-center">
+                  <img src={loggedInUser.photoURL} alt="" />
                 </div>
-                <p className="student-name font-semibold text-lg">John Doe</p>
+                <p className="student-name font-semibold text-lg">
+                  {loggedInUser.displayName}
+                </p>
               </div>
               <div className="drop-down-menu relative">
                 <div
@@ -43,6 +47,7 @@ const Navbar: FC = () => {
                       onClick={() => {
                         setShowLogout(false);
                         logout();
+                        // setLoggedInUser(null);
                       }}
                     >
                       Logout

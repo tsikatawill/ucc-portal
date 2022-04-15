@@ -1,11 +1,30 @@
-import GlassX from "glassx";
-import { FC, useContext } from "react";
+import { useStore } from "glassx";
+import { FC, useEffect } from "react";
 import { FaUserGraduate } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Sidebar: FC = () => {
-  const showSidebar = GlassX.get("showSidebar");
-  const mobile = GlassX.get("mobile");
+  const [showSidebar] = useStore("showSidebar");
+  const [mobile, setMobile] = useStore("mobile");
+
+  const windowEvent = (e?: any) => {
+    if (window.innerWidth < 770) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", windowEvent);
+    return () => {
+      window.removeEventListener("resize", windowEvent);
+    };
+  }, []);
+
+  useEffect(() => {
+    windowEvent();
+  }, []);
 
   return (
     <aside
