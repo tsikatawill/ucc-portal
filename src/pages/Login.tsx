@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { firebaseAuth } from "../components/auth/firebase/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
+import UCCLogo from "../images/ucc-logo.gif";
 import GlassX from "glassx";
 
 const Login = () => {
@@ -11,35 +12,92 @@ const Login = () => {
     const google_provider = new GoogleAuthProvider();
     signInWithPopup(firebaseAuth, google_provider)
       .then((result) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
         if (result.user) {
-          GlassX.set({ loggedInUser: result.user, hasAuth: true });
+          GlassX.set({
+            isLoggedIn: true,
+          });
+          localStorage.setItem("loggedInUser", JSON.stringify(result.user));
         } else {
-          GlassX.set({ loggedInUser: {}, hasAuth: true });
+          GlassX.set({
+            isLoggedIn: false,
+          });
         }
         setRedirect(true);
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // const email = error.email;
-        // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
         console.log({ error });
       });
   };
+
+  // useEffect(() => {
+  //   const data = localStorage.getItem("loggedInUser");
+  //   if (data) {
+  //     GlassX.set({ loggedInData: JSON.parse(data) });
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "loggedInUser",
+  //     JSON.stringify(GlassX.get("loggedInUser"))
+  //   );
+  // });
   return (
-    <div className="grid place-content-center">
+    <section className="login-page flex flex-col gap-5 px-5 items-center pt-5 min-h-screen bg-slate-200">
       {redirect && <Navigate to="/" />}
 
-      <button
-        className="btn bg-blue-500 p-4 rounded-md m-10 text-white"
-        onClick={signIn}
+      <div className="header">
+        <div className="logo-wrapper mb-2">
+          <img src={UCCLogo} className="w-20 mx-auto" alt="logo" />
+        </div>
+        <h2 className="font-bold capitalize text-lg">Login to your portal</h2>
+      </div>
+      <form
+        className="border-2 border-gray-300 rounded-md p-5 bg-white"
+        onSubmit={(e) => e.preventDefault()}
       >
-        Login with Google
-      </button>
-    </div>
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            placeholder="Enter your student email"
+          />
+        </div>
+        <div className="input-group">
+          <div className="flex justify-between items-center">
+            <label htmlFor="password">Password</label>
+            <Link to="/" className="text-blue-500">
+              Forgot password?
+            </Link>
+          </div>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            placeholder="Enter your password"
+          />
+        </div>
+        <button
+          type="submit"
+          className="px-3 py-2 rounded-md hover:bg-blue-400 w-full bg-blue-500 text-white"
+        >
+          Login
+        </button>
+      </form>
+      <div className="google-sign-in border-2 border-gray-300 rounded-md p-5 bg-white text-center">
+        Sign in with{" "}
+        <span
+          className="cursor-pointer text-blue-500 font-bold"
+          onClick={signIn}
+        >
+          Google
+        </span>
+      </div>
+    </section>
   );
 };
 

@@ -1,13 +1,12 @@
-import GlassX, { useStore, useReducer } from "glassx";
+import { useStore, useReducer } from "glassx";
 import { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
+import { logout } from "./auth/firebase/firebase";
 
 const Sidebar: FC = () => {
   const [showSidebar] = useStore("showSidebar");
   const [mobile, setMobile] = useStore("mobile");
-  const [loggedInUser, setLoggedInUser] = useStore("loggedInUser");
-  const handleLogout = useReducer("SET_LOGOUT");
+  const loggedInUser = localStorage.getItem("loggedInUser");
 
   const windowEvent = (e?: any) => {
     if (window.innerWidth < 770) {
@@ -34,22 +33,8 @@ const Sidebar: FC = () => {
         showSidebar && "sidebar-open"
       }
         
-      w-[250px] px-5 pt-5 h-screen fixed text-xs`}
+      w-[250px] px-5 pt-5 h-screen fixed`}
     >
-      {loggedInUser && (
-        <div className="student-details flex items-center gap-2 bg-white rounded-md p-2 mb-5">
-          <div className="profile-picture h-10 w-10 rounded-full bg-white grid place-content-center overflow-hidden">
-            <img src={loggedInUser.photoURL} alt="" />
-          </div>
-          <div className="flex flex-col gap-0">
-            <p className="student-name font-semibold">
-              {loggedInUser.displayName}
-            </p>
-            <small className="index-number">AH/HIM/19/0000</small>
-          </div>
-        </div>
-      )}
-
       <div className="sidebar-links flex flex-col gap-2">
         <Link to="/personal-details">Personal Details</Link>
         <Link to="/verify-details">Verify Details</Link>
@@ -61,7 +46,7 @@ const Sidebar: FC = () => {
         <Link to="/personal-details">Exam Timetable</Link>
         <Link to="/personal-details">FAQ</Link>
         <Link to="/personal-details">Reset Password</Link>
-        {loggedInUser && <div onClick={handleLogout}>Logout</div>}
+        {loggedInUser && <div onClick={() => logout()}>Logout</div>}
       </div>
     </aside>
   );

@@ -17,6 +17,7 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 export const logout = () => {
+  localStorage.removeItem("loggedInUser");
   return signOut(firebaseAuth);
 };
 

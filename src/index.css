@@ -1,21 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 body {
-  /* @apply bg-slate-200; */
+  font-family: "Roboto", sans-serif;
 }
 
 * {
   transition: all 0.2s ease;
   scroll-behavior: smooth;
 }
-/* 
-body::before {
-  content: "";
-  height: 10vh;
-  display: block;
-} */
 
 aside.sidebar.mobile {
   @apply z-10 -left-[500px] w-96;
@@ -32,4 +27,20 @@ aside.sidebar .sidebar-links div {
 
 .wrapper {
   @apply px-5;
+}
+
+section.login-page .google-sign-in,
+section.login-page form {
+  @apply w-96;
+}
+section.login-page .input-group {
+  @apply flex flex-col mb-5 gap-2;
+}
+
+section.login-page .input-group label {
+  @apply font-semibold;
+}
+
+section.login-page .input-group input {
+  @apply border border-gray-300 rounded-md p-1;
 }

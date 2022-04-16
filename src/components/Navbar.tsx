@@ -2,18 +2,20 @@ import Logo from "../images/ucc-logo.gif";
 import { FaBars, FaCaretDown } from "react-icons/fa";
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { useStore, useReducer } from "glassx";
+import GlassX, { useStore } from "glassx";
+import { logout } from "./auth/firebase/firebase";
 
 const Navbar: FC = () => {
   const [showLogout, setShowLogout] = useState<boolean>(false);
-  const [loggedInUser, setLoggedInUser] = useStore("loggedInUser");
+  const data: any = localStorage.getItem("loggedInUser");
+  const loggedInUser = JSON.parse(data);
   const [showSidebar, setShowSidebar] = useStore("showSidebar");
-  const handleLogout = useReducer("SET_LOGOUT");
 
   return (
     <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
       <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
-        <Link to="/" className="logo flex items-center gap-2">
+        <div>React App</div>
+        <Link to="/" className="logo items-center gap-2 hidden">
           <img src={Logo} alt="logo" width={"40px"} />
           <span className=" font-bold text-xl">Students' Portal</span>
         </Link>
@@ -45,7 +47,7 @@ const Navbar: FC = () => {
                       className="py-1 px-2"
                       onClick={() => {
                         setShowLogout(!showLogout);
-                        handleLogout({});
+                        logout();
                       }}
                     >
                       Logout
