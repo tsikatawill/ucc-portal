@@ -1,47 +1,30 @@
 import { useContext, useEffect, useState } from "react";
-import { firebaseAuth } from "../components/auth/firebase/firebase";
+import { firebaseAuth } from "../auth/firebase/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Navigate, Link } from "react-router-dom";
 import UCCLogo from "../images/ucc-logo.gif";
-import GlassX from "glassx";
+import { AuthContext } from "../context/authContext";
 
 const Login = () => {
   const [redirect, setRedirect] = useState(false);
+  const { dispatch, state } = useContext(AuthContext);
+
+  console.log({ userr: state.loggedInUser });
 
   const signIn = () => {
     const google_provider = new GoogleAuthProvider();
     signInWithPopup(firebaseAuth, google_provider)
       .then((result) => {
         if (result.user) {
-          GlassX.set({
-            isLoggedIn: true,
-          });
-          localStorage.setItem("loggedInUser", JSON.stringify(result.user));
-        } else {
-          GlassX.set({
-            isLoggedIn: false,
-          });
+          setRedirect(true);
+          return dispatch({ type: "LOGIN", payload: result.user });
         }
-        setRedirect(true);
       })
       .catch((error) => {
         console.log({ error });
       });
   };
 
-  // useEffect(() => {
-  //   const data = localStorage.getItem("loggedInUser");
-  //   if (data) {
-  //     GlassX.set({ loggedInData: JSON.parse(data) });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     "loggedInUser",
-  //     JSON.stringify(GlassX.get("loggedInUser"))
-  //   );
-  // });
   return (
     <section className="login-page flex flex-col gap-5 px-5 items-center pt-5 min-h-screen bg-slate-200">
       {redirect && <Navigate to="/" />}

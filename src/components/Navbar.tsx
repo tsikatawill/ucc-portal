@@ -1,15 +1,17 @@
 import Logo from "../images/ucc-logo.gif";
 import { FaBars, FaCaretDown } from "react-icons/fa";
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import GlassX, { useStore } from "glassx";
-import { logout } from "./auth/firebase/firebase";
+import { useStore } from "glassx";
+import { logout } from "../auth/firebase/firebase";
+import { AuthContext } from "../context/authContext";
 
 const Navbar: FC = () => {
   const [showLogout, setShowLogout] = useState<boolean>(false);
-  const data: any = localStorage.getItem("loggedInUser");
-  const loggedInUser = JSON.parse(data);
   const [showSidebar, setShowSidebar] = useStore("showSidebar");
+  const { state } = useContext(AuthContext);
+  const { loggedInUser } = state;
+  console.log(loggedInUser);
 
   return (
     <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">

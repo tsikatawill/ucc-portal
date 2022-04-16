@@ -1,7 +1,7 @@
-import { useStore, useReducer } from "glassx";
+import { useStore } from "glassx";
 import { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "./auth/firebase/firebase";
+import { logout } from "../auth/firebase/firebase";
 
 const Sidebar: FC = () => {
   const [showSidebar] = useStore("showSidebar");

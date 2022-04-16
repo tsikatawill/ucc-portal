@@ -1,20 +1,11 @@
-import GlassX from "glassx";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-
-export const useAuth = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    setIsLoggedIn(GlassX.get("isLoggedIn"));
-  }, []);
-
-  return isLoggedIn;
-};
+import { AuthContext } from "./context/authContext";
 
 const ProtectedRoutes: FC = ({ children }) => {
-  const isAuth = useAuth();
+  const { state } = useContext(AuthContext);
 
-  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+  return state.loggedInUser ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoutes;
