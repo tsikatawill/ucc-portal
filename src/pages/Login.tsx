@@ -77,7 +77,7 @@ const Login = () => {
         <div className="input-group">
           <div className="flex justify-between items-center">
             <label htmlFor="password">Password</label>
-            <Link to="/" className="text-blue-500">
+            <Link to="/reset-password" className="text-blue-500">
               Forgot password?
             </Link>
           </div>
