@@ -1,17 +1,40 @@
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { firebaseAuth } from "../auth/firebase/firebase";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { Navigate, Link } from "react-router-dom";
 import UCCLogo from "../images/ucc-logo.gif";
 import { AuthContext } from "../context/authContext";
 
 const Login = () => {
   const [redirect, setRedirect] = useState(false);
-  const { dispatch, state } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
-  console.log({ userr: state.loggedInUser });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [formErrors, setFormErrors] = useState<string[]>([]);
 
-  const signIn = () => {
+  const emailSignIn = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(firebaseAuth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // ...
+        if (user) {
+          setRedirect(true);
+          return dispatch({ type: "LOGIN", payload: user });
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log({ errorCode, errorMessage });
+      });
+  };
+  const googleSignIn = () => {
     const google_provider = new GoogleAuthProvider();
     signInWithPopup(firebaseAuth, google_provider)
       .then((result) => {
@@ -37,7 +60,7 @@ const Login = () => {
       </div>
       <form
         className="border-2 border-gray-300 rounded-md p-5 bg-white"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => emailSignIn(e)}
       >
         <div className="input-group">
           <label htmlFor="email">Email</label>
@@ -46,6 +69,8 @@ const Login = () => {
             name="email"
             type="email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your student email"
           />
         </div>
@@ -61,6 +86,8 @@ const Login = () => {
             name="password"
             type="password"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
           />
         </div>
@@ -75,7 +102,7 @@ const Login = () => {
         Sign in with{" "}
         <span
           className="cursor-pointer text-blue-500 font-bold"
-          onClick={signIn}
+          onClick={googleSignIn}
         >
           Google
         </span>

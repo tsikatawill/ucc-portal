@@ -1,5 +1,10 @@
 import Logo from "../images/ucc-logo.gif";
-import { FaBars, FaCaretDown } from "react-icons/fa";
+import {
+  FaBars,
+  FaCaretDown,
+  FaSignOutAlt,
+  FaUserGraduate,
+} from "react-icons/fa";
 import { FC, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "glassx";
@@ -15,9 +20,8 @@ const Navbar: FC = () => {
 
   return (
     <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
-      <div className="wrapper py-2 relative z-50 h-full flex items-center justify-between">
-        <div>React App</div>
-        <Link to="/" className="logo items-center gap-2 hidden">
+      <div className="wrapper py-3 relative z-50 h-full flex items-center justify-between">
+        <Link to="/" className="logo items-center gap-2 flex">
           <img src={Logo} alt="logo" width={"40px"} />
           <span className=" font-bold text-xl">Students' Portal</span>
         </Link>
@@ -26,10 +30,14 @@ const Navbar: FC = () => {
             <div className="flex items-center gap-2">
               <div className="student-details flex items-center gap-2">
                 <div className="profile-picture h-10 w-10 rounded-full overflow-hidden bg-white grid place-content-center">
-                  <img src={loggedInUser.photoURL} alt="" />
+                  {loggedInUser.photoURL ? (
+                    <img src={loggedInUser.photoURL} alt="user" />
+                  ) : (
+                    <FaUserGraduate color="black" size="20" />
+                  )}
                 </div>
                 <p className="student-name font-semibold text-lg">
-                  {loggedInUser.displayName}
+                  {loggedInUser.displayName || loggedInUser.email}
                 </p>
               </div>
               <div className="drop-down-menu relative">
@@ -45,15 +53,18 @@ const Navbar: FC = () => {
                 </div>
                 {showLogout && (
                   <div className="menu absolute top-[100%] hover:bg-slate-200 cursor-pointer rounded-md z-10 right-2 p-2 bg-white text-black">
-                    <p
-                      className="py-1 px-2"
+                    <div
+                      className="py-1 px-2 flex gap-2 items-center"
                       onClick={() => {
                         setShowLogout(!showLogout);
                         logout();
                       }}
                     >
                       Logout
-                    </p>
+                      <span>
+                        <FaSignOutAlt />
+                      </span>
+                    </div>
                   </div>
                 )}
               </div>

@@ -1,13 +1,15 @@
 import { useStore } from "glassx";
-import { FC, useEffect } from "react";
+import { FC, useContext, useEffect } from "react";
+import { FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { logout } from "../auth/firebase/firebase";
+import { AuthContext } from "../context/authContext";
 
 const Sidebar: FC = () => {
   const [showSidebar] = useStore("showSidebar");
   const [mobile, setMobile] = useStore("mobile");
-  const loggedInUser = localStorage.getItem("loggedInUser");
-
+  const { state } = useContext(AuthContext);
+  const loggedInUser = state.loggedInUser;
   const windowEvent = (e?: any) => {
     if (window.innerWidth < 770) {
       setMobile(true);
@@ -46,7 +48,14 @@ const Sidebar: FC = () => {
         <Link to="/personal-details">Exam Timetable</Link>
         <Link to="/personal-details">FAQ</Link>
         <Link to="/personal-details">Reset Password</Link>
-        {loggedInUser && <div onClick={() => logout()}>Logout</div>}
+        {loggedInUser && (
+          <div className="flex items-center gap-2" onClick={() => logout()}>
+            Logout{" "}
+            <span>
+              <FaSignOutAlt />
+            </span>
+          </div>
+        )}
       </div>
     </aside>
   );

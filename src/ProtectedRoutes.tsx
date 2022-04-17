@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "./context/authContext";
 

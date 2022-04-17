@@ -7,6 +7,7 @@ import VerifyDetails from "./components/VerifyDetails";
 import { AuthProvider } from "./context/authContext";
 import "./index.css";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import ProtectedRoutes from "./ProtectedRoutes";
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
             <Route path="/verify-details" element={<VerifyDetails />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

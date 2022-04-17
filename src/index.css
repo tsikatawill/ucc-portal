@@ -29,18 +29,23 @@ aside.sidebar .sidebar-links div {
   @apply px-5;
 }
 
+section.signup-page .google-sign-in,
 section.login-page .google-sign-in,
+section.signup-page form,
 section.login-page form {
   @apply w-96;
 }
+section.signup-page .input-group,
 section.login-page .input-group {
   @apply flex flex-col mb-5 gap-2;
 }
 
+section.signup-page .input-group label,
 section.login-page .input-group label {
   @apply font-semibold;
 }
 
+section.signup-page .input-group input,
 section.login-page .input-group input {
   @apply border border-gray-300 rounded-md p-1;
 }
