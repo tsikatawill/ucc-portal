@@ -92,7 +92,11 @@ const PersonalDetails = () => {
               </div>
               <div className="user-detail-card">
                 <label htmlFor="dob">Date of Birth:</label>
-                <input type="date" id="dob" />
+                <input
+                  type="date"
+                  id="dob"
+                  value={new Date().toDateValueInput()}
+                />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="level">Level:</label>
