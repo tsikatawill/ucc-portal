@@ -18,7 +18,7 @@ const PersonalDetails = () => {
                 <FaUserGraduate color="#333" size={60} />
               </div>
               <div className="text uppercase text-center sm:text-left">
-                <h1 className="text-3xl font-bold">John Doe</h1>
+                <h1 className="text-3xl font-bold">John K. Doe</h1>
                 <p>AH/HIM/19/0000</p>
               </div>
             </div>
@@ -37,47 +37,62 @@ const PersonalDetails = () => {
             <div className="user-details grid sm:grid-cols-2 sm:gap-3">
               <div className="user-detail-card">
                 <label htmlFor="Title">Title:</label>
-                <input type="text" id="Title" />
+                <input type="text" id="Title" value="Mr." />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="firstname">First Name:</label>
-                <input type="text" id="firstname" />
+                <input type="text" id="firstname" value="John" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="middlename">Middle Name</label>
-                <input type="text" id="middlename" />
+                <input type="text" id="middlename" value="Kofi" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="lastname">Last Name</label>
-                <input type="text" id="lastname" />
+                <input type="text" id="lastname" value="Doe" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="institutionalEmail">Institutional Email:</label>
-                <input type="email" id="institutionalEmail" />
+                <input
+                  type="email"
+                  id="institutionalEmail"
+                  value="djohn@stu.ucc.edu.gh"
+                />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="password">Password:</label>
+                <input type="password" value="passwordpassword" />
                 <p className="text-blue-500 cursor-pointer">Reset password</p>
               </div>
               <div className="user-detail-card">
                 <label htmlFor="indexNumber">Index Number:</label>
-                <input type="text" id="indexNumber" />
+                <input type="text" id="indexNumber" value="AA/BBB/00/0000" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="programme">Programme:</label>
-                <input type="text" id="programme" />
+                <input
+                  type="text"
+                  id="programme"
+                  value="BSc. Interesting Programe"
+                />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="currentMajor">Current Major:</label>
-                <input type="text" id="currentMajor" />
+                <input type="text" id="currentMajor" value="Cryptocurrency" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="gender">Gender:</label>
-                <input type="text" id="gender" />
+                <select name="gender" id="gender">
+                  <option value="" disabled>
+                    -- select gender --
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
               </div>
               <div className="user-detail-card">
                 <label htmlFor="dob">Date of Birth:</label>
-                <input type="text" id="dob" />
+                <input type="date" id="dob" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="level">Level:</label>

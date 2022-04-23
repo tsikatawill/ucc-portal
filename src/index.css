@@ -65,5 +65,5 @@ aside.sidebar .sidebar-links div {
 
 .personal-details .user-detail-card select,
 .personal-details .user-detail-card input {
-  @apply rounded-md p-2 border border-gray-500 max-w-xl bg-white;
+  @apply rounded-md p-2 border border-gray-500 max-w-xl bg-white placeholder:text-gray-600;
 }
