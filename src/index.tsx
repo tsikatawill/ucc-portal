@@ -15,11 +15,11 @@ ReactDOM.render(
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<App />} />
-            <Route path="/personal-details" element={<PersonalDetails />} />
-            <Route path="/verify-details" element={<VerifyDetails />} />
-          </Route>
+          {/* <Route element={<ProtectedRoutes />}> */}
+          <Route path="/" element={<App />} />
+          <Route path="/personal-details" element={<PersonalDetails />} />
+          <Route path="/verify-details" element={<VerifyDetails />} />
+          {/* </Route> */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/reset-password" element={<PasswordReset />} />

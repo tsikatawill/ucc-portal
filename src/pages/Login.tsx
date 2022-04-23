@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { firebaseAuth } from "../auth/firebase/firebase";
 import {
   GoogleAuthProvider,
@@ -58,10 +58,7 @@ const Login = () => {
         </div>
         <h2 className="font-bold capitalize text-lg">Login to your portal</h2>
       </div>
-      <form
-        className="border-2 border-gray-300 rounded-md p-5 bg-white"
-        onSubmit={(e) => emailSignIn(e)}
-      >
+      <form className="form-bg" onSubmit={(e) => emailSignIn(e)}>
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
@@ -98,7 +95,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      <div className="google-sign-in border-2 border-gray-300 rounded-md p-5 bg-white text-center">
+      <div className="google-sign-in form-bg text-center">
         Sign in with{" "}
         <span
           className="cursor-pointer text-blue-500 font-bold"
@@ -106,6 +103,12 @@ const Login = () => {
         >
           Google
         </span>
+      </div>
+      <div className="register form-bg text-center">
+        Don't have an account?{" "}
+        <Link to="/signup" className="cursor-pointer text-blue-500 font-bold">
+          Register
+        </Link>
       </div>
     </section>
   );

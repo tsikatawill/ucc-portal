@@ -16,10 +16,9 @@ const Navbar: FC = () => {
   const [showSidebar, setShowSidebar] = useStore("showSidebar");
   const { state } = useContext(AuthContext);
   const { loggedInUser } = state;
-  console.log(loggedInUser);
 
   return (
-    <nav className="navbar sticky top-0 w-full bg-slate-800 text-white z-50">
+    <nav className="navbar fixed top-0 w-full bg-slate-800 text-white z-50 h-20">
       <div className="wrapper py-3 relative z-50 h-full flex items-center justify-between">
         <Link to="/" className="logo items-center gap-2 flex">
           <img src={Logo} alt="logo" width={"40px"} />
@@ -28,7 +27,7 @@ const Navbar: FC = () => {
         <div className="flex items-center gap-5">
           {loggedInUser ? (
             <div className="flex items-center gap-2">
-              <div className="student-details flex items-center gap-2">
+              <div className="student-details hidden sm:flex items-center gap-2">
                 <div className="profile-picture h-10 w-10 rounded-full overflow-hidden bg-white grid place-content-center">
                   {loggedInUser.photoURL ? (
                     <img src={loggedInUser.photoURL} alt="user" />
@@ -40,7 +39,7 @@ const Navbar: FC = () => {
                   {loggedInUser.displayName || loggedInUser.email}
                 </p>
               </div>
-              <div className="drop-down-menu relative">
+              <div className="drop-down-menu hidden sm:block relative">
                 <div
                   className="toggler"
                   onClick={() => {

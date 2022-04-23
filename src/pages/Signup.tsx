@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import UCCLogo from "../images/ucc-logo.gif";
 import { AuthContext } from "../context/authContext";
 
@@ -54,7 +54,7 @@ const Signup = () => {
         </h2>
       </div>
       <form
-        className="border-2 border-gray-300 rounded-md p-5 bg-white"
+        className="border-2 form-bg border-gray-300 rounded-md p-5 bg-white"
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="input-group">
@@ -120,9 +120,15 @@ const Signup = () => {
           Sign up
         </button>
       </form>
-      <div className="google-sign-in border-2 border-gray-300 rounded-md p-5 bg-white text-center">
+      <div className="google-sign-in border-2 form-bg border-gray-300 rounded-md p-5 bg-white text-center">
         Sign up with{" "}
         <span className="cursor-pointer text-blue-500 font-bold">Google</span>
+      </div>
+      <div className="register form-bg text-center">
+        Already have an account?{" "}
+        <Link to="/login" className="cursor-pointer text-blue-500 font-bold">
+          Login
+        </Link>
       </div>
     </section>
   );

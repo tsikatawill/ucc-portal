@@ -1,10 +1,11 @@
 import { sendPasswordResetEmail } from "firebase/auth";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { firebaseAuth } from "../auth/firebase/firebase";
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
-  const resetPassword = () => {
+  const resetPassword = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     sendPasswordResetEmail(firebaseAuth, email)
       .then(() => {
         // Password reset email sent!
@@ -20,8 +21,8 @@ const PasswordReset = () => {
   return (
     <div>
       <form
-        onSubmit={() => {
-          resetPassword();
+        onSubmit={(e) => {
+          resetPassword(e);
         }}
       >
         <div className="input-group">
