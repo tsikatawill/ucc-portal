@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { FaUserGraduate } from "react-icons/fa";
 import App from "../App";
+import { AuthContext } from "../context/authContext";
 
 const PersonalDetails = () => {
+  const { state } = useContext(AuthContext);
+  const loggedInUser = state.loggedInUser;
   return (
     <App>
       <section className="personal-details">
@@ -14,11 +18,21 @@ const PersonalDetails = () => {
             }}
           >
             <div className="flex items-center flex-col sm:flex-row text-white gap-5 sm:gap-10 px-5">
-              <div className="user-image-wrapper sm:ml-10 bg-gray-100 h-36 w-36 sm:w-44 sm:h-44 rounded-full flex justify-center items-center border-8 border-orange-500">
-                <FaUserGraduate color="#333" size={60} />
+              <div className="user-image-wrapper sm:ml-10 bg-gray-100 h-36 w-36 sm:w-44 sm:h-44 rounded-full flex justify-center items-center border-8 border-orange-500 overflow-hidden">
+                {loggedInUser.photoURL ? (
+                  <img
+                    src={loggedInUser.photoURL}
+                    alt=""
+                    className="w-36 h-36"
+                  />
+                ) : (
+                  <FaUserGraduate color="#333" size={60} />
+                )}
               </div>
               <div className="text uppercase text-center sm:text-left">
-                <h1 className="text-3xl font-bold">John K. Doe</h1>
+                <h1 className="text-3xl font-bold">
+                  {loggedInUser.displayName}
+                </h1>
                 <p>AH/HIM/19/0000</p>
               </div>
             </div>
@@ -41,7 +55,11 @@ const PersonalDetails = () => {
               </div>
               <div className="user-detail-card">
                 <label htmlFor="firstname">First Name:</label>
-                <input type="text" id="firstname" value="John" />
+                <input
+                  type="text"
+                  id="firstname"
+                  value={loggedInUser.displayName.split(" ")[0]}
+                />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="middlename">Middle Name</label>
@@ -49,14 +67,18 @@ const PersonalDetails = () => {
               </div>
               <div className="user-detail-card">
                 <label htmlFor="lastname">Last Name</label>
-                <input type="text" id="lastname" value="Doe" />
+                <input
+                  type="text"
+                  id="lastname"
+                  value={loggedInUser.displayName.split(" ")[1]}
+                />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="institutionalEmail">Institutional Email:</label>
                 <input
                   type="email"
                   id="institutionalEmail"
-                  value="djohn@stu.ucc.edu.gh"
+                  value={loggedInUser.email}
                 />
               </div>
               <div className="user-detail-card">

@@ -36,7 +36,7 @@ const Sidebar: FC = () => {
         
       w-[250px] px-5 pt-5 fixed`}
     >
-      {/* <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
+      <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
         <div className="profile-picture h-20 w-20 rounded-full overflow-hidden bg-gray-400 shadow-lg shadow-gray-400 grid place-content-center">
           {loggedInUser.photoURL ? (
             <img src={loggedInUser.photoURL} alt="user" />
@@ -44,11 +44,11 @@ const Sidebar: FC = () => {
             <FaUserGraduate color="black" size="20" />
           )}
         </div>
-        <p className="student-name font-semibold text-lg">
+        <p className="student-name font-bold text-xl uppercase mt-2">
           {loggedInUser.displayName || loggedInUser.email}
         </p>
-      </div> */}
-      <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
+      </div>
+      {/* <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
         <div className="profile-picture h-20 w-20 rounded-full overflow-hidden bg-gray-200 shadow-lg shadow-gray-400 grid place-content-center">
           <FaUserGraduate color="black" size="40" />
         </div>
@@ -56,7 +56,7 @@ const Sidebar: FC = () => {
           John K. Doe
         </p>
         <p className="student-name font-semibold">AH/HIM/19/0000</p>
-      </div>
+      </div> */}
       <div className="sidebar-links flex flex-col gap-2 ">
         <Link to="/personal-details">Personal Details</Link>
         <Link to="/verify-details">Verify Details</Link>
