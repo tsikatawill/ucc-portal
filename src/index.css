@@ -9,7 +9,7 @@ body {
 }
 
 body::before {
-  height: 5rem;
+  @apply h-20;
   content: "j";
   display: block;
 }
@@ -53,7 +53,7 @@ aside.sidebar .sidebar-links div {
 }
 
 .personal-details .header {
-  background: url(./images/jinx.jpg) no-repeat center center/cover;
+  background: url(./images/ucc-entrance.jpg) no-repeat center center/cover;
 }
 
 .personal-details .user-detail-card label {

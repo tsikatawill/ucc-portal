@@ -5,16 +5,16 @@ const PersonalDetails = () => {
   return (
     <App>
       <section className="personal-details">
-        <div className="header h-52 sm:h-80 mb-32 sm:mb-0 relative">
+        <div className="header h-56 sm:h-80 mb-32 sm:mb-0 relative">
           <div
             className="bottom -bottom-32 bg-red-300 absolute sm:bottom-0 w-full pb-8"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.7), black, black, black, black, black, black, black, black)",
+                "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.7), black, black, black, black)",
             }}
           >
             <div className="flex items-center flex-col sm:flex-row text-white gap-5 sm:gap-10 px-5">
-              <div className="user-image-wrapper sm:ml-10 bg-white h-36 w-36 sm:w-44 sm:h-44 rounded-full flex justify-center items-center border-8 border-orange-500">
+              <div className="user-image-wrapper sm:ml-10 bg-gray-100 h-36 w-36 sm:w-44 sm:h-44 rounded-full flex justify-center items-center border-8 border-orange-500">
                 <FaUserGraduate color="#333" size={60} />
               </div>
               <div className="text uppercase text-center sm:text-left">
@@ -66,7 +66,7 @@ const PersonalDetails = () => {
               </div>
               <div className="user-detail-card">
                 <label htmlFor="indexNumber">Index Number:</label>
-                <input type="text" id="indexNumber" value="AA/BBB/00/0000" />
+                <input type="text" id="indexNumber" value="Ah/him/19/0000" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="programme">Programme:</label>
@@ -92,11 +92,7 @@ const PersonalDetails = () => {
               </div>
               <div className="user-detail-card">
                 <label htmlFor="dob">Date of Birth:</label>
-                <input
-                  type="date"
-                  id="dob"
-                  value={new Date().toDateValueInput()}
-                />
+                <input type="date" id="dob" value="1900-01-01" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="level">Level:</label>
@@ -124,27 +120,31 @@ const PersonalDetails = () => {
               </div>
               <div className="user-detail-card">
                 <label htmlFor="oRoomNumber">Room Number:</label>
-                <input type="text" id="oRoomNumber" />
+                <input type="text" id="oRoomNumber" value="D-22" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="gpsAddress">GPS Address:</label>
-                <input type="text" id="gpsAddress" />
+                <input type="text" id="gpsAddress" value="ER-3333-2222" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="text" id="phoneNumber" />
+                <input type="text" id="phoneNumber" value="+233550000000" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="postAddress">Postal Address:</label>
-                <input type="text" id="postAddress" />
+                <input
+                  type="text"
+                  id="postAddress"
+                  value="P.O. Box 200, Some Location"
+                />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="hometown">Hometown:</label>
-                <input type="text" id="hometown" />
+                <input type="text" id="hometown" value="Ghana" />
               </div>
               <div className="user-detail-card">
                 <label htmlFor="placeOfBirth">Place of Birth:</label>
-                <input type="text" id="placeOfBirth" />
+                <input type="text" id="placeOfBirth" value="Ghana" />
               </div>
             </div>
             <div className="cta text-center mt-5">

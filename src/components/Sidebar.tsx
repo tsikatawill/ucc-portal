@@ -1,5 +1,5 @@
 import { useStore } from "glassx";
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { FaSignOutAlt, FaUserGraduate } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { logout } from "../auth/firebase/firebase";
@@ -10,18 +10,23 @@ const Sidebar: FC = () => {
   const [mobile, setMobile] = useStore("mobile");
   const { state } = useContext(AuthContext);
   const loggedInUser = state.loggedInUser;
-
-  const handleResize = () => {
-    window.innerWidth < 770 ? setMobile(true) : setMobile(false);
-  };
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+    });
 
-    return window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth);
+      });
+    };
   }, []);
 
-  useEffect(() => handleResize(), []);
+  useEffect(() => {
+    windowWidth < 770 ? setMobile(true) : setMobile(false);
+  }, [windowWidth]);
 
   return (
     <aside
@@ -31,7 +36,7 @@ const Sidebar: FC = () => {
         
       w-[250px] px-5 pt-5 fixed`}
     >
-      <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
+      {/* <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
         <div className="profile-picture h-20 w-20 rounded-full overflow-hidden bg-gray-400 shadow-lg shadow-gray-400 grid place-content-center">
           {loggedInUser.photoURL ? (
             <img src={loggedInUser.photoURL} alt="user" />
@@ -42,12 +47,22 @@ const Sidebar: FC = () => {
         <p className="student-name font-semibold text-lg">
           {loggedInUser.displayName || loggedInUser.email}
         </p>
+      </div> */}
+      <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
+        <div className="profile-picture h-20 w-20 rounded-full overflow-hidden bg-gray-200 shadow-lg shadow-gray-400 grid place-content-center">
+          <FaUserGraduate color="black" size="40" />
+        </div>
+        <p className="student-name font-bold text-xl uppercase mt-2">
+          John K. Doe
+        </p>
+        <p className="student-name font-semibold">AH/HIM/19/0000</p>
       </div>
       <div className="sidebar-links flex flex-col gap-2 ">
         <Link to="/personal-details">Personal Details</Link>
         <Link to="/verify-details">Verify Details</Link>
         <Link to="/personal-details">Past Questions (Manual)</Link>
-        <Link to="/personal-details">MTN Data Bundle</Link>
+        <Link to="/mtn-bundle">MTN Data Bundle</Link>
+        <Link to="/statement-of-results">Statement of Results</Link>
         <Link to="/personal-details">Survey</Link>
         <Link to="/personal-details">Registration</Link>
         <Link to="/personal-details">Fees</Link>

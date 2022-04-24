@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
+import MTNBundle from "./components/MTNBundle";
 import PersonalDetails from "./components/PersonalDetails";
+import StatementOfResults from "./components/StatementOfResults";
 import VerifyDetails from "./components/VerifyDetails";
 import { AuthProvider } from "./context/authContext";
 import "./index.css";
@@ -19,6 +21,11 @@ ReactDOM.render(
           <Route path="/" element={<App />} />
           <Route path="/personal-details" element={<PersonalDetails />} />
           <Route path="/verify-details" element={<VerifyDetails />} />
+          <Route path="/mtn-bundle" element={<MTNBundle />} />
+          <Route
+            path="/statement-of-results"
+            element={<StatementOfResults />}
+          />
           {/* </Route> */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
