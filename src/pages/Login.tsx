@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { firebaseAuth } from "../auth/firebase/firebase";
 import {
   GoogleAuthProvider,
@@ -6,7 +6,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { Navigate, Link } from "react-router-dom";
-import UCCLogo from "../images/ucc-logo.gif";
 import { AuthContext } from "../context/authContext";
 import FormHeader from "../components/FormHeader";
 
@@ -17,6 +16,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [formErrors, setFormErrors] = useState<string[]>([]);
+
+  const { state } = useContext(AuthContext);
+
+  useEffect(() => {
+    state.loggedInUser ? setRedirect(true) : setRedirect(false);
+  }, [state.loggedInUser]);
 
   const emailSignIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
