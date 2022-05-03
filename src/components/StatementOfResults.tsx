@@ -1,49 +1,32 @@
 import React from "react";
 import { FaFlagCheckered } from "react-icons/fa";
 import App from "../App";
+import ResultsTable from "./ResultsTable";
+import { SampleStudentResults } from "./SampleStudentResults";
 
 const StatementOfResults = () => {
+  console.log(SampleStudentResults);
   return (
     <App>
-      <section className="statement-of-results sm:flex">
+      <section className="statement-of-results md:flex">
         <div className="p-5 flex-grow">
-          <div className="header">
+          <div className="header mb-5">
             <h1 className="text-center font-bold text-3xl">
               Statement Of Results
             </h1>
           </div>
-          <div className="results-per-semester">
-            <table className="max-w-5xl mx-auto bg-white result-table">
-              <thead>
-                <tr>
-                  <legend>Semester</legend>
-                </tr>
-                <tr className="text-left">
-                  <th>Code</th>
-                  <th>Title</th>
-                  <th>Cr</th>
-                  <th>Gd</th>
-                  <th>Gp</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>
-                    Lorem ipsum dolor Lorem ipsum dolor, sit amet consectetur
-                    adipisicing elit. Quod, nostrum. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Rerum inventore sint esse
-                    repudiandae ad, reiciendis unde officia magni dolore fugit
-                    cumque earum quas sed minus minima illo ducimus iure
-                    aliquam! sit amet.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="results-per-semester flex flex-col gap-10">
+            {SampleStudentResults.length > 0 &&
+              SampleStudentResults.map((item) => (
+                <ResultsTable
+                  academicYear={item.academicYear}
+                  semester={item.semester}
+                  semesterCourses={item.semesterCourses}
+                />
+              ))}
           </div>
         </div>
-        <aside className="p-5 sm:w-[30rem]">
+        <aside className="p-5 md:w-[20rem]">
           <h2 className="text-center text-red-500 font-bold">Note:</h2>
           <p className="text-center">
             The status for each course is displayed below

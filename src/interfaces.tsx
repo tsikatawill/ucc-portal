@@ -14,3 +14,17 @@ export interface NotificationInterface {
   noteText: string;
   condition?: string;
 }
+
+export interface courseInterface {
+  code: string;
+  title: string;
+  cr: number;
+  gd: string;
+  gp: number;
+}
+
+export interface semesterResultsInterface {
+  academicYear: string;
+  semester: "first" | "second";
+  semesterCourses: courseInterface[];
+}
