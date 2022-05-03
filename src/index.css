@@ -5,12 +5,12 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  @apply bg-slate-100;
+  @apply bg-slate-200;
 }
 
 body::before {
-  @apply h-20;
-  content: "j";
+  @apply h-20 bg-slate-200;
+  content: "";
   display: block;
 }
 
@@ -49,7 +49,7 @@ aside.sidebar .sidebar-links div {
 }
 
 .form-bg .input-group input {
-  @apply border border-gray-300 rounded-md py-1 px-2;
+  @apply border border-gray-500 rounded-md py-1 px-2 bg-slate-50 placeholder:text-slate-700;
 }
 
 .personal-details .header {

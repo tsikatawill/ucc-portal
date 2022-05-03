@@ -8,6 +8,7 @@ import {
 import { Navigate, Link } from "react-router-dom";
 import UCCLogo from "../images/ucc-logo.gif";
 import { AuthContext } from "../context/authContext";
+import FormHeader from "../components/FormHeader";
 
 const Login = () => {
   const [redirect, setRedirect] = useState(false);
@@ -49,15 +50,10 @@ const Login = () => {
   };
 
   return (
-    <section className="login-page flex flex-col gap-5 px-5 items-center pt-5 min-h-screen bg-slate-200">
+    <section className="login-page flex flex-col gap-5 px-5 items-center py-5 -mt-20 min-h-[calc(100vh-5rem)] bg-slate-200">
       {redirect && <Navigate to="/" />}
 
-      <div className="header">
-        <div className="logo-wrapper mb-2">
-          <img src={UCCLogo} className="w-20 mx-auto" alt="logo" />
-        </div>
-        <h2 className="font-bold capitalize text-lg">Login to your portal</h2>
-      </div>
+      <FormHeader headerTitle="Login to your portal" />
       <form className="form-bg" onSubmit={(e) => emailSignIn(e)}>
         <div className="input-group">
           <label htmlFor="email">Email</label>

@@ -30,11 +30,11 @@ const Sidebar: FC = () => {
 
   return (
     <aside
-      className={`sidebar bg-white border-2 border-r-gray-400 h-screen overflow-auto ${
+      className={`sidebar bg-white border-2 border-r-gray-400 h-[calc(100vh-5rem)] overflow-auto ${
         mobile && "mobile"
       } ${showSidebar && "sidebar-open"}
         
-      w-[250px] px-5 pt-5 fixed`}
+      w-[250px] p-5 fixed`}
     >
       <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
         <div className="profile-picture h-20 w-20 rounded-full overflow-hidden bg-gray-400 shadow-lg shadow-gray-400 grid place-content-center">

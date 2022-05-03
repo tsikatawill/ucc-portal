@@ -5,8 +5,9 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { Link, Navigate } from "react-router-dom";
-import UCCLogo from "../images/ucc-logo.gif";
+
 import { AuthContext } from "../context/authContext";
+import FormHeader from "../components/FormHeader";
 
 const Signup = () => {
   const [redirect, setRedirect] = useState(false);
@@ -42,17 +43,10 @@ const Signup = () => {
   };
 
   return (
-    <section className="signup-page flex flex-col gap-5 px-5 items-center pt-5 min-h-screen bg-slate-200">
+    <section className="signup-page flex flex-col gap-5 p-5 items-center -mt-20">
       {redirect && <Navigate to="/login" />}
 
-      <div className="header">
-        <div className="logo-wrapper mb-2">
-          <img src={UCCLogo} className="w-20 mx-auto" alt="logo" />
-        </div>
-        <h2 className="font-bold capitalize text-lg">
-          Create Your UCC Account
-        </h2>
-      </div>
+      <FormHeader headerTitle="Create your UCC account" />
       <form
         className="border-2 form-bg border-gray-300 rounded-md p-5 bg-white"
         onSubmit={(e) => handleSubmit(e)}
@@ -120,10 +114,7 @@ const Signup = () => {
           Sign up
         </button>
       </form>
-      <div className="google-sign-in border-2 form-bg border-gray-300 rounded-md p-5 bg-white text-center">
-        Sign up with{" "}
-        <span className="cursor-pointer text-blue-500 font-bold">Google</span>
-      </div>
+
       <div className="register form-bg text-center">
         Already have an account?{" "}
         <Link to="/login" className="cursor-pointer text-blue-500 font-bold">
