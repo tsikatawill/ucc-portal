@@ -12,6 +12,36 @@ const StatementOfResults = () => {
               Statement Of Results
             </h1>
           </div>
+          <div className="results-per-semester">
+            <table className="max-w-5xl mx-auto bg-white result-table">
+              <thead>
+                <tr>
+                  <legend>Semester</legend>
+                </tr>
+                <tr className="text-left">
+                  <th>Code</th>
+                  <th>Title</th>
+                  <th>Cr</th>
+                  <th>Gd</th>
+                  <th>Gp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lorem ipsum dolor sit amet.</td>
+                  <td>Lorem ipsum dolor sit amet.</td>
+                  <td>
+                    Lorem ipsum dolor Lorem ipsum dolor, sit amet consectetur
+                    adipisicing elit. Quod, nostrum. Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit. Rerum inventore sint esse
+                    repudiandae ad, reiciendis unde officia magni dolore fugit
+                    cumque earum quas sed minus minima illo ducimus iure
+                    aliquam! sit amet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <aside className="p-5 sm:w-[30rem]">
           <h2 className="text-center text-red-500 font-bold">Note:</h2>

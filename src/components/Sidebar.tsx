@@ -39,7 +39,7 @@ const Sidebar: FC = () => {
       <div className="student-details mb-5 sm:hidden flex flex-col items-center gap-2">
         <div className="profile-picture h-20 w-20 rounded-full overflow-hidden bg-gray-400 shadow-lg shadow-gray-400 grid place-content-center">
           {loggedInUser.photoURL ? (
-            <img src={loggedInUser.photoURL} alt="user" />
+            <img src={loggedInUser.photoURL} alt="user-dp" />
           ) : (
             <FaUserGraduate color="black" size="20" />
           )}
