@@ -11,12 +11,6 @@ const StatementOfResults = () => {
             <h1 className="text-center font-bold text-3xl">
               Statement Of Results
             </h1>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore
-              ipsum recusandae illo dolorum alias. Corrupti quae inventore quasi
-              sequi quibusdam dignissimos! Voluptatibus, nemo. Quas in quos,
-              accusantium magni eveniet anim!
-            </p>
           </div>
         </div>
         <aside className="p-5 sm:w-[30rem]">
